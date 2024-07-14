@@ -1,0 +1,13 @@
+:host {
+  display: flex;
+  margin: 0 auto;
+}
+
+:host mat-card-content {
+  width: inherit;
+  flex: 0 0 auto;
+}
+
+:host mat-form-field {
+  display: flex;
+}

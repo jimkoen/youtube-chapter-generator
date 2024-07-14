@@ -1,0 +1,18 @@
+<mat-card appearance="outlined">
+  <mat-card-header>
+    <mat-card-title>YouTube Chapter Generator</mat-card-title>
+    <mat-card-subtitle>Enter a YouTube video URL to start editing transcripts.</mat-card-subtitle>
+  </mat-card-header>
+  <form [formGroup]="form" (ngSubmit)="onSubmitURL()">
+    <mat-card-content>
+
+      <mat-form-field>
+        <mat-label>Video URL</mat-label>
+        <input matInput type="url" formControlName="videoUrl" />
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions align='end'>
+      <button mat-stroked-button type="submit" [disabled]="!form.valid">EDIT</button>
+    </mat-card-actions>
+  </form>
+</mat-card>

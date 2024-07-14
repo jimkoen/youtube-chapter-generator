@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "youtube-chapter-generator-api"
+version = "0.1.0"
+description = "API backend that provices transcripts as well as access to LLM based summarizations"
+authors = ["Lucca Jiménez Könings <development@jimkoen.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.111.0"
+youtube-transcript-api = "^0.6.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

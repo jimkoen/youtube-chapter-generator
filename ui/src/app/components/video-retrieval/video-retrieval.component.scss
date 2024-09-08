@@ -1,6 +1,8 @@
 :host {
   display: flex;
   margin: 0 auto;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 :host mat-card-content {
@@ -10,4 +12,43 @@
 
 :host mat-form-field {
   display: flex;
+}
+
+.loading-indicator {
+  min-height: 112px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  mat-spinner {
+    max-width: 2.5em;
+    max-height: 2.5em;
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+  }
+
+  p {
+    margin: 0;
+  }
+
+}
+
+.loading-indicator .text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 16px;
+}
+
+.loading-indicator .spinner-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.fixture {
+  min-height: 112px;
 }

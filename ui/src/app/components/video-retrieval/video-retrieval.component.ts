@@ -6,11 +6,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { VideoService } from '../../services/video.service';
+import { YtTranscriptService } from '../../services/yt-transcript.service';
 import { getYtVideoIdFromUrl, validateYouTubeUrl } from '../../common';
 import { createYouTubeUrlValidator } from '../../validators/YouTubeUrlValidator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ActivatedRoute, Router } from '@angular/router';
+import {catchError} from "rxjs";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
         selector: 'app-video-retrieval',
@@ -27,7 +29,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class VideoRetrievalComponent {
         public loading: boolean = false;
-
+        public error!: Error
+        public errorMessage!: string
         form = this.fb.group({
                 videoUrl: ['', [
                         Validators.required,
@@ -37,7 +40,7 @@ export class VideoRetrievalComponent {
         })
 
         constructor(
-                private yt: VideoService,
+                private yt: YtTranscriptService,
                 private fb: FormBuilder,
                 private router: Router,
                 private route: ActivatedRoute
@@ -50,12 +53,19 @@ export class VideoRetrievalComponent {
 
         onSubmitURL() {
                 this.loading = true;
-                this.yt.getTranscript(getYtVideoIdFromUrl(this.form.controls.videoUrl.value as string)).subscribe(
-                        (result) => {
-                                console.log(result)
-                                this.loading = false;
-                        }
-                )
+                this.yt.getTranscript(getYtVideoIdFromUrl(this.form.controls.videoUrl.value as string)).
+                subscribe({
+                  next: (result) => {
+                    this.loading = false;
+                  },
+                  error: (e : HttpErrorResponse)  =>
+                  {
+                    this.loading = false
+                    this.error = e
+                    this.errorMessage = e.error.detail
+                    console.log(e.error.detail)
+                  }
+                })
         }
 
         navigateToEditor(e: AnimationEvent) {

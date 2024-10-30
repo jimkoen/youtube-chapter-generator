@@ -10,6 +10,7 @@ export function createYouTubeUrlValidator(): ValidatorFn {
                 }
 
                 const isYouTubeUrl = validateYouTubeUrl(value);
+                console.log(isYouTubeUrl)
 
                 return !isYouTubeUrl ? { invalidUrl: true } : null;
         }

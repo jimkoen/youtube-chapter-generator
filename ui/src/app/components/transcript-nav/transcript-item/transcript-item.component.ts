@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { YouTubeTimestampComponent } from '../../you-tube-timestamp/you-tube-timestamp.component';
-import { YouTubeTranscriptTimestamp } from '../../../services/video.service';
+import { YouTubeTranscriptTimestamp } from '../../../services/yt-transcript.service';
 
 @Component({
         selector: 'app-transcript-item',

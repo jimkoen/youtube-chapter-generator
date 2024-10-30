@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TranscriptItemComponent } from './transcript-item/transcript-item.component';
-import { YouTubeTranscriptTimestamp } from '../../services/video.service';
+import { YouTubeTranscriptTimestamp } from '../../services/yt-transcript.service';
 
 @Component({
         selector: 'app-transcript-nav',

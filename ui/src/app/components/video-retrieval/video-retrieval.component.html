@@ -18,7 +18,7 @@
 </mat-card>
 <div class="fixture">
   @if(this.loading){
-  <div @spinner (@spinner.done)="navigateToEditor($event)" class="loading-indicator">
+  <div @spinner class="loading-indicator">
     <div class="spinner-container">
       <mat-spinner></mat-spinner>
     </div>
@@ -26,5 +26,7 @@
       <p>Loading Transcript...</p>
     </div>
   </div>
+  } @else if (this.error){
+    <div><p>{{this.errorMessage}}</p></div>
   }
 </div>

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-export type YouTubeTranscriptTimestamp = {
+export interface YouTubeTranscriptTimestamp {
         text: string,
         start: number,
         duration: number

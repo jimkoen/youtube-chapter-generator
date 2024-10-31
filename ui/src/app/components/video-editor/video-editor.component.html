@@ -1,4 +1,5 @@
-<p>video-editor works with id {{this.videoId}}!</p>
-<youtube-player appYouTubePlayerController [videoId]="this.videoId" [loadApi]=true />
+@if (videoId$ | async; as videoId){
+  <youtube-player appYouTubePlayerController [videoId]="videoId" [loadApi]=true disablePlaceholder/>
+}
 <app-test-player-controls></app-test-player-controls>
 <app-transcript-nav />

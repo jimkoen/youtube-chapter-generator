@@ -1,2 +1,7 @@
-<p>transcript-nav works!</p>
-<app-transcript-item [transcriptTimestamp]=this.ts />
+<p>transcript nav works!</p>
+
+<cdk-virtual-scroll-viewport itemSize="120" class="transcript-item-viewport">
+  <div *cdkVirtualFor="let item of transcript$ | async;">
+    <app-transcript-item [transcriptTimestamp]="item"></app-transcript-item>
+  </div>
+</cdk-virtual-scroll-viewport>

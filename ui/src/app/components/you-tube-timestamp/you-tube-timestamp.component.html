@@ -1,1 +1,5 @@
-<button mat-button (click)="seekTo()">{{time}}</button>
+@if(time){
+  <button (click)="seekTo()">{{time | timecode}}</button>
+}@else{
+  <button disabled>INVALID</button>
+}

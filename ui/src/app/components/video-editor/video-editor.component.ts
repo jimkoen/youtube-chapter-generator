@@ -6,8 +6,8 @@ import { TestPlayerControlsComponent } from '../test-player-controls/test-player
 import { YouTubePlayerControllerDirective } from '../../directives/you-tube-player-controller.directive';
 import { TranscriptNavComponent } from '../transcript-nav/transcript-nav.component';
 import {map, Observable, of} from "rxjs";
-import {YouTubeTranscriptTimestamp} from "../../services/yt-transcript.service";
 import {AsyncPipe} from "@angular/common";
+import {YouTubeTranscript, YouTubeTranscriptItem} from "../../utilities/transcript/youtube-transcript";
 @Component({
         selector: 'app-video-editor',
         standalone: true,
@@ -17,7 +17,7 @@ import {AsyncPipe} from "@angular/common";
         styleUrl: './video-editor.component.scss'
 })
 export class VideoEditorComponent implements OnInit, AfterViewInit {
-        transcript$ : Observable<YouTubeTranscriptTimestamp[] | null> = of(null)
+        transcript$ : Observable<YouTubeTranscript | null> = of(null)
         videoId$ : Observable<string | null> = of(null)
         @ViewChild(YouTubePlayer) player?: YouTubePlayer
         constructor(private router: Router,

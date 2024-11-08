@@ -1,9 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 
-import {YouTubeTranscriptTimestamp, YtTranscriptService} from './yt-transcript.service';
+import {YtTranscriptService} from './yt-transcript.service';
 import {HttpTestingController, provideHttpClientTesting} from "@angular/common/http/testing";
 import {HttpErrorResponse, provideHttpClient, withInterceptorsFromDi} from "@angular/common/http";
 import {TRANSCRIPTS} from "../../../../api/tests/fixtures/frontend/TRANSCRIPT";
+import {YouTubeTranscriptItem} from "../utilities/transcript/youtube-transcript";
 
 describe('YtTranscriptService', () => {
   let yt : YtTranscriptService,

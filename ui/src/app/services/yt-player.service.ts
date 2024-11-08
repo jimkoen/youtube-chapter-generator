@@ -52,7 +52,6 @@ export class YtPlayerService {
         public ctrSeek = this._emitSeekToController.asObservable()
 
 
-
         playVideo(): void {
                 console.log("Video Service: playVideo()")
                 this._emitPlayToController.next()
@@ -67,6 +66,7 @@ export class YtPlayerService {
                 this._emitSeekToController.next(time)
         }
 
+        setCurrentTime(t : number){this._currentTime$.next(t)}
         getCurrentTime(): number { return 0 }
 
 

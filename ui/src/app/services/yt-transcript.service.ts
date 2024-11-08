@@ -1,13 +1,7 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-
-export interface YouTubeTranscriptTimestamp {
-        text: string,
-        start: number,
-        duration: number
-}
-
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {YouTubeTranscript, YouTubeTranscriptItem} from "../utilities/transcript/youtube-transcript";
 
 // taken from https://github.com/angular/components/blob/main/src/youtube-player/youtube-player.ts#L97
 
@@ -29,14 +23,12 @@ enum PlayerState {
 export class YtTranscriptService {
         private apiUrl = "api"
 
-
         constructor(private httpClient: HttpClient) { }
 
-        getTranscript(videoId: string): Observable<YouTubeTranscriptTimestamp[]> {
+        getTranscript(videoId: string): Observable<YouTubeTranscript> {
                 const url = `${this.apiUrl}/transcripts/${videoId}`
-                return this.httpClient.get<YouTubeTranscriptTimestamp[]>(url)
+                return this.httpClient.get<YouTubeTranscriptItem[]>(url)
         }
-
 
 
 

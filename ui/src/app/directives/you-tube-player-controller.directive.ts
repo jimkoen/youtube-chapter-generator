@@ -120,8 +120,6 @@ export class YouTubePlayerControllerDirective implements AfterViewInit {
 
   ngAfterViewInit(): void {
 
-    this.currentTimeChange?.subscribe(v => console.log(v))
-
     this.player?.ctrPlay.subscribe(() => {
       this.host.playVideo()
     })
@@ -134,6 +132,7 @@ export class YouTubePlayerControllerDirective implements AfterViewInit {
       this.host.seekTo(v, true)
     })
 
+    this.currentTimeChange?.subscribe(t => this.player?.setCurrentTime(t))
 
 
   }

@@ -1,5 +1,23 @@
-@if (videoId$ | async; as videoId){
-  <youtube-player appYouTubePlayerController [videoId]="videoId" [loadApi]=true disablePlaceholder/>
-}
-<app-test-player-controls></app-test-player-controls>
-<app-transcript-nav />
+
+<mat-grid-list cols="4">
+  <mat-grid-tile [colspan]="2" [rowspan]="1">
+
+    <div class="wrapper">
+
+  @if (videoId$ | async; as videoId){
+    <youtube-player appYouTubePlayerController [videoId]="videoId" [loadApi]=true disablePlaceholder/>
+
+  }
+    <app-test-player-controls></app-test-player-controls>
+    </div>
+
+  </mat-grid-tile>
+
+  <mat-grid-tile [colspan]="2" [rowspan]="1">
+    <app-transcript-nav />
+  </mat-grid-tile>
+
+</mat-grid-list>
+
+
+

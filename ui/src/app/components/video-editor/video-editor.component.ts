@@ -8,10 +8,11 @@ import { TranscriptNavComponent } from '../transcript-nav/transcript-nav.compone
 import {map, Observable, of} from "rxjs";
 import {AsyncPipe} from "@angular/common";
 import {YouTubeTranscript, YouTubeTranscriptItem} from "../../utilities/transcript/youtube-transcript";
+import {MatGridList, MatGridTile} from "@angular/material/grid-list";
 @Component({
         selector: 'app-video-editor',
         standalone: true,
-  imports: [YouTubePlayer, TestPlayerControlsComponent, YouTubePlayerControllerDirective, TranscriptNavComponent, AsyncPipe],
+  imports: [YouTubePlayer, TestPlayerControlsComponent, YouTubePlayerControllerDirective, TranscriptNavComponent, AsyncPipe, MatGridList, MatGridTile],
         providers: [YtPlayerService],
         templateUrl: './video-editor.component.html',
         styleUrl: './video-editor.component.scss'

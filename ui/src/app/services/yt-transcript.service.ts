@@ -30,6 +30,10 @@ export class YtTranscriptService {
                 return this.httpClient.get<YouTubeTranscriptItem[]>(url)
         }
 
+        calculateTranscriptTokens(t : YouTubeTranscript){
+
+        }
+
 
 
 

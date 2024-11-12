@@ -31,7 +31,7 @@ export class VideoRetrievalComponent {
         public loading: boolean = false;
         public error!: Error
         public errorMessage!: string
-        form = this.fb.group({
+        public form = this.fb.group({
                 videoUrl: ['', [
                         Validators.required,
                         createYouTubeUrlValidator()

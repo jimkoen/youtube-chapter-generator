@@ -9,10 +9,11 @@ import {map, Observable, of} from "rxjs";
 import {AsyncPipe} from "@angular/common";
 import {YouTubeTranscript, YouTubeTranscriptItem} from "../../utilities/transcript/youtube-transcript";
 import {MatGridList, MatGridTile} from "@angular/material/grid-list";
+import {TranscriptComplexityComponent} from "../transcript-complexity/transcript-complexity.component";
 @Component({
         selector: 'app-video-editor',
         standalone: true,
-  imports: [YouTubePlayer, TestPlayerControlsComponent, YouTubePlayerControllerDirective, TranscriptNavComponent, AsyncPipe, MatGridList, MatGridTile],
+  imports: [YouTubePlayer, TestPlayerControlsComponent, YouTubePlayerControllerDirective, TranscriptNavComponent, AsyncPipe, MatGridList, MatGridTile, TranscriptComplexityComponent],
         providers: [YtPlayerService],
         templateUrl: './video-editor.component.html',
         styleUrl: './video-editor.component.scss'

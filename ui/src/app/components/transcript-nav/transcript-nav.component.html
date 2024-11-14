@@ -1,5 +1,5 @@
 <cdk-virtual-scroll-viewport itemSize="36" class="transcript-item-viewport">
-  <div *cdkVirtualFor="let item of transcript$ | async;">
+  <div *cdkVirtualFor="let item of transcript;">
     <app-transcript-item [transcriptTimestamp]="item"></app-transcript-item>
   </div>
 </cdk-virtual-scroll-viewport>

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {TranscriptItemComponent} from "../transcript-item/transcript-item.component";
 import {ActivatedRoute} from "@angular/router";
 import {filter, map, Observable, of} from "rxjs";
@@ -16,19 +16,14 @@ import IntervalTree, {NumericTuple} from "@flatten-js/interval-tree";
         styleUrl: './transcript-nav.component.scss'
 })
 export class TranscriptNavComponent implements OnInit{
-  protected transcript$: Observable<YouTubeTranscript | null> = of(null);
+  @Input() transcript? : YouTubeTranscript
   protected transcriptIndex: IntervalTree<YouTubeTranscriptItem> = new IntervalTree()
 
         constructor(private route : ActivatedRoute, private playerService : YtPlayerService) {
         }
 
         ngOnInit() {
-            this.transcript$ = this.route.data.pipe(
-              map(({transcript}) => transcript)
-            )
-
-            this.transcript$.pipe(filter(t => t !== null))
-              .subscribe(t => this.buildIndex(t!))
+           this.buildIndex(this.transcript!)
 
             this.playerService.currentTime$.subscribe(v => console.log(this.seek(v)))
         }

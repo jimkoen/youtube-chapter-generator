@@ -13,7 +13,7 @@
   </mat-grid-tile>
 
   <mat-grid-tile [colspan]="2" [rowspan]="2">
-    <app-transcript-nav />
+    <app-transcript-nav [transcript]="(transcript$ | async)!" />
   </mat-grid-tile>
 
 </mat-grid-list>

@@ -1,7 +1,8 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
+import {map, Observable} from 'rxjs';
 import {YouTubeTranscript, YouTubeTranscriptItem} from "../utilities/transcript/youtube-transcript";
+import {ActivatedRoute} from "@angular/router";
 
 // taken from https://github.com/angular/components/blob/main/src/youtube-player/youtube-player.ts#L97
 
@@ -23,7 +24,8 @@ enum PlayerState {
 export class YtTranscriptService {
         private apiUrl = "api"
 
-        constructor(private httpClient: HttpClient) { }
+        constructor(private httpClient: HttpClient, private route : ActivatedRoute) {
+        }
 
         getTranscript(videoId: string): Observable<YouTubeTranscript> {
                 const url = `${this.apiUrl}/transcripts/${videoId}`

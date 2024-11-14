@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {BehaviorSubject, map, Observable, of} from "rxjs";
 import {reduceTranscript, YouTubeTranscript} from "../../utilities/transcript/youtube-transcript";
 import {ActivatedRoute} from "@angular/router";
@@ -25,31 +25,32 @@ import {FormBuilder, ReactiveFormsModule} from "@angular/forms";
   styleUrl: './transcript-complexity.component.scss'
 })
 export class TranscriptComplexityComponent implements OnInit{
-  protected transcript$: BehaviorSubject<YouTubeTranscript | null> = new BehaviorSubject(null) as BehaviorSubject<YouTubeTranscript | null>
-  public transcript? : YouTubeTranscript
+  @Input() transcript? : YouTubeTranscript
+  @Output() onTranscriptReduce? : EventEmitter<YouTubeTranscript>
+
   public transcriptSections? : number
   public transcriptTokens? : number
 
-  constructor(private route : ActivatedRoute, ytTranscript : YtTranscriptService) {
-    of(null).subscribe(this.transcript$)
+  constructor(private route : ActivatedRoute) {
   }
   ngOnInit() {
-    this.route.data.pipe(
-      map(({transcript}) => transcript)
-    ).subscribe(this.transcript$)
 
-    this.transcript$.subscribe(t => this.transcriptSections = t?.length)
-    this.transcript$.subscribe(t => this.calculateTokens(t!))
+    this.transcriptSections = this.transcript!.length
+    this.transcriptTokens = this.calculateTokens(this.transcript!)
   }
 
   calculateTokens(t : YouTubeTranscript){
     const enc = getEncoding("cl100k_base")
     const encodedTranscript = enc.encode(JSON.stringify(t))
-    this.transcriptTokens = encodedTranscript.length
+    return encodedTranscript.length
   }
 
   onTokenSliderChange(v : number){
-    console.log(reduceTranscript(this.transcript$.value!, v))
+    const reducedTranscript = reduceTranscript(this.transcript!, v)
+    console.log(reducedTranscript)
+    this.transcriptTokens = this.calculateTokens(reducedTranscript!)
+    this.transcriptSections = reducedTranscript.length
+    this.onTranscriptReduce?.emit(reducedTranscript)
   }
 
 }

@@ -8,8 +8,8 @@
   <p>Original: {{this.transcriptSections}} sections / {{this.transcriptTokens}} tokens</p>
 
   <p>Current: {{this.transcriptSections}} sections / {{this.transcriptTokens}} tokens</p>
-  <mat-slider>
-    <input matSliderThumb (valueChange)="onTokenSliderChange($event)" value="50">
+  <mat-slider min="2" max="10" step="1" value="2">
+    <input matSliderThumb  (valueChange)="onTokenSliderChange($event)" >
   </mat-slider>
   </mat-card-content>
 </mat-card>

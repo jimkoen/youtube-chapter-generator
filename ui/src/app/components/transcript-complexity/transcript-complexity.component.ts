@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {map, Observable, of} from "rxjs";
-import {YouTubeTranscript} from "../../utilities/transcript/youtube-transcript";
+import {BehaviorSubject, map, Observable, of} from "rxjs";
+import {reduceTranscript, YouTubeTranscript} from "../../utilities/transcript/youtube-transcript";
 import {ActivatedRoute} from "@angular/router";
 import {YtPlayerService} from "../../services/yt-player.service";
 import {YtTranscriptService} from "../../services/yt-transcript.service";
@@ -25,16 +25,18 @@ import {FormBuilder, ReactiveFormsModule} from "@angular/forms";
   styleUrl: './transcript-complexity.component.scss'
 })
 export class TranscriptComplexityComponent implements OnInit{
-  protected transcript$: Observable<YouTubeTranscript | null> = of(null);
+  protected transcript$: BehaviorSubject<YouTubeTranscript | null> = new BehaviorSubject(null) as BehaviorSubject<YouTubeTranscript | null>
+  public transcript? : YouTubeTranscript
   public transcriptSections? : number
   public transcriptTokens? : number
 
   constructor(private route : ActivatedRoute, ytTranscript : YtTranscriptService) {
+    of(null).subscribe(this.transcript$)
   }
   ngOnInit() {
-    this.transcript$ = this.route.data.pipe(
+    this.route.data.pipe(
       map(({transcript}) => transcript)
-    )
+    ).subscribe(this.transcript$)
 
     this.transcript$.subscribe(t => this.transcriptSections = t?.length)
     this.transcript$.subscribe(t => this.calculateTokens(t!))
@@ -47,7 +49,7 @@ export class TranscriptComplexityComponent implements OnInit{
   }
 
   onTokenSliderChange(v : number){
-    console.log(v)
+    console.log(reduceTranscript(this.transcript$.value!, v))
   }
 
 }

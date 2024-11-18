@@ -1,5 +1,5 @@
-@if(time){
-  <button (click)="seekTo()">{{time | timecode}}</button>
+@if(this.timestamp){
+  <button (click)="seekTo()">{{this.timestamp!.time | timecode}}</button>
 }@else{
   <button disabled>INVALID</button>
 }

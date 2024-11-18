@@ -36,3 +36,7 @@ export function reduceTranscript(t : YouTubeTranscript, combinationAmount : numb
   return reducedTranscript
 }
 
+export type YouTubeTimestamp = {
+  time : number,
+  text? : string
+}

@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { YtPlayerService } from '../../services/yt-player.service';
 import {TimecodePipe} from "./timecode.pipe";
+import {YouTubeTimestamp} from "../../utilities/transcript/youtube-transcript";
 
 @Component({
         selector: 'app-you-tube-timestamp',
@@ -11,14 +12,14 @@ import {TimecodePipe} from "./timecode.pipe";
         styleUrl: './you-tube-timestamp.component.scss'
 })
 export class YouTubeTimestampComponent {
-        @Input() public time?: number
+        @Input() public timestamp?: YouTubeTimestamp
 
         constructor(private player: YtPlayerService) {
 
         }
 
         public seekTo() {
-                this.player.seekTo(this.time!)
+                this.player.seekTo(this.timestamp!.time)
         }
 
 }

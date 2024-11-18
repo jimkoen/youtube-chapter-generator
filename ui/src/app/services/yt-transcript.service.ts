@@ -36,7 +36,7 @@ export class YtTranscriptService {
 
         }
 
-
-
+        getTranscriptTimestamps(t: YouTubeTranscript){}
 
 }
+

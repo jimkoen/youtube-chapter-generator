@@ -26,7 +26,7 @@ import {FormBuilder, ReactiveFormsModule} from "@angular/forms";
 })
 export class TranscriptComplexityComponent implements OnInit{
   @Input() transcript? : YouTubeTranscript
-  @Output() onTranscriptReduce? : EventEmitter<YouTubeTranscript>
+  @Output() onTranscriptReduce : EventEmitter<YouTubeTranscript> = new EventEmitter()
 
   public transcriptSections? : number
   public transcriptTokens? : number

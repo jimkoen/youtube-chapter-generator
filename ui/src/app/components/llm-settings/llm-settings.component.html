@@ -1,0 +1,32 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>LLM Settings</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <form [formGroup]="form">
+
+    <mat-form-field>
+      <mat-label>System Instructions</mat-label>
+      <textarea matInput></textarea>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Model</mat-label>
+      <mat-select>
+        <mat-option>ChatGPT-4</mat-option>
+        <mat-option>ChatGPT-4-Turbo</mat-option>
+      </mat-select>
+    </mat-form-field>
+      <mat-label>Temperature</mat-label>
+      <mat-slider [min]="10" [max]="1000">
+      <input  matSliderThumb formControlName="temperature">
+      </mat-slider>
+      <mat-label>Max Tokens</mat-label>
+      <mat-slider [min]="10" [max]="1000">
+        <input matSliderThumb formControlName="maxTokens">
+      </mat-slider>
+    </form>
+  </mat-card-content>
+
+
+</mat-card>

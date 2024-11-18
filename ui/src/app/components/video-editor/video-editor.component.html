@@ -12,12 +12,19 @@
 
   </mat-grid-tile>
 
-  <mat-grid-tile [colspan]="2" [rowspan]="2">
+  <mat-grid-tile [colspan]="2" [rowspan]="1">
+    @if(editedTranscript$ | async; as editedTranscript){
+      <app-transcript-nav [transcript]="(editedTranscript)!" />
+    }
+    @else{
     <app-transcript-nav [transcript]="(transcript$ | async)!" />
+
+    }
   </mat-grid-tile>
 
 </mat-grid-list>
 
 <mat-divider/>
 
-<app-transcript-complexity [transcript]="(transcript$ | async)!" />
+<app-transcript-complexity [transcript]="(transcript$ | async)!" (onTranscriptReduce)="editTranscript($event)" />
+<app-llm-settings></app-llm-settings>
